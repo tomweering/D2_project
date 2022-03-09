@@ -1,4 +1,11 @@
 # D2Project
+# Basic information
+Python 3.7+
+
+# Workflow
+to update the files in pycharm, click pull
+
+to submit a change, first click commit, then push
 
 # Rules
 keep to structure of files as in main.py: add code as methods and use as little code possible in main function
