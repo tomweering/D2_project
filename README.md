@@ -1,6 +1,7 @@
 # D2Project
 # Basic information
 Python 3.7+
+Compass library
 
 # Workflow
 to update the files in pycharm, click pull
