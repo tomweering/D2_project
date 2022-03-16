@@ -1,6 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
+
 #ax = plt.figure().add_subplot(projection='3d')
 #make location arrays
 x = np.arange(-32,32,1)
@@ -9,30 +10,13 @@ y = np.arange(-8,8,1)
 
 #load vector field data
 
-vf = np.loadtxt('vectorField_scaledByDensity.csv', dtype=float, delimiter=",", skiprows=10, usecols=(1,2))
-#
-Ex = []
-Ey = []
+#getting data from CSV file
+with open("filtered_2D.csv") as f:
+    array_CSV = np.loadtxt(f, delimiter=",")
 
-#
-for n in range(64):
-    ex = []
-    ey = []
-    for i in range(16):
-        ax, ay,  = vf[(n*16) + i]
-        if np.sqrt(ax**2+ay**2) < 0.9:
-            ex.append(0)
-            ey.append(0)
-        else:
-            ex.append(ax)
-            ey.append(ay)
-    print(ex)
-    Ex.append(ex)
-    Ey.append(ey)
+Ex = array_CSV[:,:16]
+Ey = array_CSV[:,16:]
 
-
-
-# print(ex)
 
 X,Y = np.meshgrid(x,y)
 
