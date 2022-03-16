@@ -20,10 +20,13 @@ for n in range(64):
     ey = []
     for i in range(16):
         ax, ay,  = vf[(n*16) + i]
-        
-        ex.append(ax)
-        ey.append(ay)
-
+        if np.sqrt(ax**2+ay**2) < 0.9:
+            ex.append(0)
+            ey.append(0)
+        else:
+            ex.append(ax)
+            ey.append(ay)
+    print(ex)
     Ex.append(ex)
     Ey.append(ey)
 
