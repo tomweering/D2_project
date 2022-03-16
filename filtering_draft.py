@@ -12,10 +12,16 @@ def filter2D(vector_field, norm_criteria):
         ey = []
         for i in range(16):
             ax, ay,  = vf[(n*16) + i]
-            
-            ex.append(ax)
-            ey.append(ay)
-
+            if np.sqrt(ax**2+ay**2) < 0.1:
+                ex.append(0)
+                ey.append(0)
+            else:
+                ex.append(ax)
+                ey.append(ay)
         Ex.append(ex)
         Ey.append(ey)
-    return Ex, Ey
+    array = np.concatenate((Ex, Ey), axis=1)
+    with open("filtered_2D.csv","w+",newline='') as f:
+        csvWriter = csv.writer(f,delimiter=',')
+        csvWriter.writerows(array)
+    return array
