@@ -9,7 +9,7 @@ y = np.arange(-8,8,1)
 
 #load vector field data
 
-vf = np.loadtxt('vectorField.csv', dtype=float, delimiter=",", skiprows=10, usecols=(1,2))
+vf = np.loadtxt('vectorField_scaledByDensity.csv', dtype=float, delimiter=",", skiprows=10, usecols=(1,2))
 #
 Ex = []
 Ey = []
