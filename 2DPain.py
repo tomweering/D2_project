@@ -4,9 +4,8 @@ import matplotlib.pyplot as plt
 
 #ax = plt.figure().add_subplot(projection='3d')
 #make location arrays
-x = np.arange(-32,32,1)
-y = np.arange(-8,8,1)
-
+x = np.linspace(0.375,0.625,16)
+y = np.linspace(0,1,64)
 
 #load vector field data
 
@@ -17,8 +16,7 @@ with open("filtered_2D.csv") as f:
 Ex = array_CSV[:,:16]
 Ey = array_CSV[:,16:]
 
-
-X,Y = np.meshgrid(x,y)
+X, Y = np.meshgrid(x,y)
 
 # Depict illustration
 #fig = plt.figure(figsize=(50, 50))
@@ -29,8 +27,8 @@ X,Y = np.meshgrid(x,y)
 #plt.show()
 
 
-plt.quiver(X,Y,Ex,Ey)   #Coordinates are messed up
-#
+#plt.quiver(X,Y,Ex,Ey)   #Coordinates are messed up
+plt.streamplot(X,Y,Ex,Ey)
 #plt.title('Electromagnetic Field')
 plt.grid()
 plt.show()
