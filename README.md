@@ -15,3 +15,11 @@ keep to structure of files as in main.py: add code as methods and use as little 
 avoid for and while loops; don't iterate through numpy arrays
 
 always use clear and informative naming convention and produce readable code: use an excessive amount of comments
+
+# Overview
+
+Below is an overview of all important codes to make browsing through this page a bit more straightforward. 
+
+ - Related to vector filtering and orientation: 
+ - Related to streamline generation and spacing:
+ - Related to stacking: 
