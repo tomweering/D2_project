@@ -20,6 +20,6 @@ always use clear and informative naming convention and produce readable code: us
 
 Below is an overview of all important codes to make browsing through this page a bit more straightforward. 
 
- - Related to vector filtering and orientation: 
- - Related to streamline generation and spacing:
- - Related to stacking: 
+ - Related to vector filtering and orientation: "". These files, along with others, can be found in the folder "VectorFilteringOrientation". 
+ - Related to streamline generation and spacing: "". These files, along with others, can be found in the folder "StreamlineGenerationAndSpacing".
+ - Related to stacking: "". These files, along with others, can be found in the folder "Stacking".
