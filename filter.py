@@ -14,6 +14,7 @@ clear_x = points_xyz[0][np.where(int_time != 0)]
 clear_y = points_xyz[1][np.where(int_time != 0)]
 clear_z = points_xyz[2][np.where(int_time != 0)]
 
+print(len(clear_x))
 fig = plt.figure()
 ax = fig.add_subplot(projection='3d')
 

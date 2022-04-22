@@ -27,9 +27,10 @@ for i in range(len(mask_start[0])):
     streamlines_y.append(new_y)
     streamlines_z.append(new_z)
 
+#print(len(streamlines_x))
 fig = plt.figure()
 ax = fig.add_subplot(projection='3d')
-for j in range(50,60):
+for j in range(len(streamlines_x)):
     ax.scatter(streamlines_x[j], streamlines_y[j] , streamlines_z[j])
 
 ax.set_xlabel('X Label')
