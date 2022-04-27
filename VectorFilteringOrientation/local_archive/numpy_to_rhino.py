@@ -3,7 +3,7 @@ from compas.geometry import Point
 from compas.geometry import Vector
 import numpy as np
 
-from VectorFilteringOrientation.grid_project import x, y, z, value_x, value_y, value_z
+from VectorFilteringOrientation.gvfield_scattering import x, y, z, value_x, value_y, value_z
 
 # grid = np.meshgrid(np.linspace(-1, 1, 3),
 #                    np.linspace(-1, 1, 3),
