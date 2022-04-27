@@ -4,6 +4,7 @@ import numpy as np
 # If input data has been updated, please first run:
 # str_to_gvectors.py ; initial_vectorfield.py ;  gvfield_scattering.py
 # You may want to change names of the .npy storage files to retain the old results.
+
 guiding_field = np.load('guiding_field.npy')
 vector_grid = np.load('initial_vectorgrid.npy')
 
@@ -38,7 +39,7 @@ vinv_x = np.multiply(vi_x, flip_mask)
 vinv_y = np.multiply(vi_y, flip_mask)
 vinv_z = np.multiply(vi_z, flip_mask)
 
-
+# TODO: Make the plotting commands into a function
 fig = plt.figure(dpi=300)
 ax = fig.gca(projection='3d')
 ax.quiver(x, y, z, vi_x, vi_y, vi_z, color='red')
