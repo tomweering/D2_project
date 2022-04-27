@@ -1,6 +1,9 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
+# If input data has been updated, please first run:
+# str_to_gvectors.py ; initial_vectorfield.py ;  gvfield_scattering.py
+# You may want to change names of the .npy storage files to retain the old results.
 guiding_field = np.load('guiding_field.npy')
 vector_grid = np.load('initial_vectorgrid.npy')
 
