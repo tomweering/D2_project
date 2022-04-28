@@ -15,23 +15,23 @@ with open("filtered_2D.csv") as f:
 
 Ex = array_CSV[:,:16]
 Ey = array_CSV[:,16:]
-
+print(abs(Ex))
 X, Y = np.meshgrid(x,y)
 
 # Depict illustration
-#fig = plt.figure(figsize=(50, 50))
+fig = plt.figure(figsize=(25, 25))
 
 #ax = plt.axes(projection = "3d")
 #ax.scatter3D(X, Y, Z)
-#ax.quiver(X, Y, Ex, Ey, length=0.01, normalize=True)
-#plt.show()
+plt.title('Electromagnetic Field')
+plt.grid()
+plt.quiver(X, Y, abs(Ex), abs(Ey))
+plt.show()
 
 
 #plt.quiver(X,Y,Ex,Ey)   #Coordinates are messed up
-plt.streamplot(X,Y,Ex,Ey)
-#plt.title('Electromagnetic Field')
-plt.grid()
-plt.show()
+plt.streamplot(X,Y,abs(Ex), abs(Ey))
+
 
 
 
