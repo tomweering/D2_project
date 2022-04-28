@@ -34,4 +34,4 @@ def filter3D(vector_field, norm_criteria):
 
 
 
-#filter2D('vectorField_scaledByDensity.csv', 0.1)
+filter2D('vectorField_scaledByDensity.csv', 0.1)
