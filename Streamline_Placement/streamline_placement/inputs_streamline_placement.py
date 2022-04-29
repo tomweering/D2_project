@@ -1,7 +1,6 @@
 import numpy as np
 import pyvista as pv
 
-from interpolation_primary import interpolator, mesh, u_list, v_list, w_list
 
 field_ones = np.ones((1000,3))
 #stream.tube(radius=0.1).plot()
@@ -36,3 +35,14 @@ vectors[:,2] = np.ones(mesh10_3.n_points)
 mesh10_3['vectors'] = vectors
 
 u_list,v_list,w_list = vectors[:,0],vectors[:,1],vectors[:,2]
+
+bounds_upper = np.array([nx,ny,nz])
+bounds_lower = np.array([0.,0.,0.])
+
+integration_direction = "forward"
+
+initial_step_length = 0.5
+step_unit = "cl"
+min_step_length = 0.5
+max_steps = 2000
+terminal_speed = 0

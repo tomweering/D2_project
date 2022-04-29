@@ -3,7 +3,7 @@ import pyvista as pv
 from scipy import interpolate
 from inputs_streamline_placement import *
 
-def initial_streamline(mesh, seed_point, integration_direction, initial_step_length, step_unit, min_step_length, max_steps, terminal_speed):
+def streamline(mesh, seed_point, integration_direction, initial_step_length, step_unit, min_step_length, max_steps, terminal_speed):
     return mesh.streamlines_from_source(seed_point, vectors="vectors", integrator_type=45, integration_direction=integration_direction, initial_step_length=initial_step_length, step_unit=step_unit, min_step_length=min_step_length, max_steps=max_steps, terminal_speed=terminal_speed)
 
 #Check distance between a chosen point and occupied points and return true if distance is cleared
@@ -31,7 +31,7 @@ def interpolator(mesh, u_list, v_list, w_list, point, method):
     w_new = float(interpolate.griddata(mesh, w_list, point, method=method))
     return np.array([u_new,v_new,w_new])
 
-def new_seed_points(n_seed_points, Radius, point, mesh):
+def new_seed_points(n_seed_points, dsep, point, mesh):
     """ for a given point on a given streamline, find possible new seed points """
     n = n_seed_points
     base_vector = interpolator(mesh, u_list, v_list, w_list, point, "nearest")
@@ -49,7 +49,7 @@ def new_seed_points(n_seed_points, Radius, point, mesh):
     # define new base points around the chosen base point
     angles = np.arange(theta0, theta0 + (2 * np.pi), (2 * np.pi) / n)
     #define new points
-    points = np.array(point * n) + Radius * (np.cos(angles).reshape((n, 1)) * (v1 * n) + np.sin(angles).reshape((n, 1)) * (v2 * n))
+    points = np.array(point * n) + dsep * (np.cos(angles).reshape((n, 1)) * (v1 * n) + np.sin(angles).reshape((n, 1)) * (v2 * n))
     """Description"""
     # find angle theta such that change in height (z coordinate is 0):
     # 2.5 = 2.5 + Radius*(np.cos(theta)*v1 + np.sin(theta)*v2)
@@ -62,7 +62,7 @@ def seed_point_filter(points, occupied_points, dsep):
     filter_array = []
     # if the element is closer than dsep to any occupied point, its index in the filter array is set to False
     for i in points:
-        if proximity_check(i, occupied_points, dsep):
+        if proximity_check(i, occupied_points, dsep) and all(bounds_lower<i) and all(i<bounds_upper) :
             filter_array.append(True)
         else:
             filter_array.append(False)
