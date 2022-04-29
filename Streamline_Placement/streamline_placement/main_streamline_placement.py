@@ -32,7 +32,7 @@ streamline_as_points = streamline.cell_points(0)
 # add point data of initial streamline into a set of points representing 'taken' points
 occupied_points = streamline_as_points
 
-# Put inital streamline as first finalised print_line in 'print_lines'
+# Put initial streamline as first finalised print_line in 'print_lines'
 print_lines.append(streamline_as_points)
 
 # put streamline into queue as a set of points which will be the first element in the queue
