@@ -3,7 +3,7 @@ import pyvista as pv
 from scipy import interpolate
 from inputs_streamline_placement import *
 
-def initial_streamline(mesh, seed_point, integration_direction, initial_step_length, step_unit, min_step_length, max_steps, terminal_speed):
+def streamline(mesh, seed_point, integration_direction, initial_step_length, step_unit, min_step_length, max_steps, terminal_speed):
     return mesh.streamlines_from_source(seed_point, vectors="vectors", integrator_type=45, integration_direction=integration_direction, initial_step_length=initial_step_length, step_unit=step_unit, min_step_length=min_step_length, max_steps=max_steps, terminal_speed=terminal_speed)
 
 #Check distance between a chosen point and occupied points and return true if distance is cleared

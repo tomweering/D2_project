@@ -3,11 +3,11 @@ from inputs_streamline_placement import *
 """-----------------------------------------------------------"""
 """INPUTS THAT WE MAY WANT TO CHANGE MORE FREQUENTLY"""
 n_seed_points = 4
-Radius = 0.5
-dsep = 0.25
+Radius = 0.2
+#dsep = 0.25
 mesh = mesh10_3np
 #pyvista find vector at point#define separation distance, dsep, between streamlines and the checking parameter to avoid colisions, dtest (a proportional param. between 0 and 1)
-dsep = 0.5 #cell unit lengths
+dsep = 0.1 #cell unit lengths
 dtest = 1 #proportion parameter
 u_list = u_list
 v_list = v_list
@@ -35,11 +35,11 @@ streamline_as_points = streamline1.cell_points(0)
 #add point data of initial streamline into a set of points representing 'taken' points
 occupied_points = np.empty([1,3])
 occupied_points = np.append(occupied_points,streamline_as_points,axis=0)
-print("occupied points",occupied_points)
+#print("occupied points",occupied_points)
 occupied_points = np.delete(occupied_points, 0, 0)
 
-print("streamline as points", streamline_as_points)
-print("occupied points",occupied_points)
+#print("streamline as points", streamline_as_points)
+#print("occupied points",occupied_points)
 
 #Put inital streamline as first finalised print_line in 'print_lines'
 print_lines.append(streamline_as_points)
@@ -50,7 +50,7 @@ queue_streamlines.append(streamline_as_points)
 #initialising visualisation
 tubes = pv.MultiBlock()
 p = pv.Plotter()
-tubes.append(streamline1.tube(radius=0.5))
+tubes.append(streamline1.tube(radius=Radius))
 p.add_mesh(mesh10_3.outline())
 """BEGINNING OF LOOP"""
 
@@ -66,25 +66,26 @@ def streamline_placement(queue_streamlines, occupied_points, print_lines):
         while queue_base_points:
             #for each point defining the streamline, find more points around it and integrate more streamlines
             base_point = queue_base_points[0]
-            print("base point",base_point)
+            #print("base point",base_point)
             #print(base_point)
             del queue_base_points[0]
             possible_seed_points = new_seed_points(n_seed_points, dsep,[base_point],mesh)
-            print("possible_seed_points", possible_seed_points)
+            #print("possible_seed_points", possible_seed_points)
             filtered_seed_points = seed_point_filter(possible_seed_points,occupied_points, dsep)
-            print("Filtered Seed points",filtered_seed_points)
+            #print("Filtered Seed points",filtered_seed_points)
             #integrate from the filtered seed_points while after each one, adding the resulting streamline (as points) to occupied_points, print_lines and queue
-            if len(filtered_seed_points) == 0:
-                print("empty")
+            #if len(filtered_seed_points) == 0:
+                #print("empty")
+
             for i in filtered_seed_points:
-                print("filtered point",i)
+                #print("filtered point",i)
                 i = pv.PointSet(i)
                 #integrate streamline, without regard to collision
                 current_streamline = streamline(mesh10_3, i, integration_direction, initial_step_length, step_unit, min_step_length, max_steps, terminal_speed)
                 #print(current_streamline)
                 streamline_as_points = current_streamline.points
                 #streamline_as_points = current_streamline.cell_points(0)
-                print("streamline as points for each point",streamline_as_points)
+                #print("streamline as points for each point",streamline_as_points)
 
                 #cutting streamlines when they collide with others or they pass out of box(looping through each point, starting with the first point)
                 index = 0
@@ -94,19 +95,19 @@ def streamline_placement(queue_streamlines, occupied_points, print_lines):
                 else:
                     break
                 streamline_as_points = streamline_as_points[:index+1]
-                print("Streamline as points shortened", streamline_as_points)
+                #print("Streamline as points shortened", streamline_as_points)
 
                 occupied_points = np.append(occupied_points,streamline_as_points,axis=0)
-                print(occupied_points)
-                print("occupied points so far", occupied_points)
+                #print(occupied_points)
+                #print("occupied points so far", occupied_points)
                 print_lines.append(streamline_as_points)
-                print("print lines so far", print_lines)
+                #print("print lines so far", print_lines)
                 #print(print_lines)
 
                 queue_streamlines.append(streamline_as_points)
                 #print(queue_streamlines)
                 line = lines_from_points(streamline_as_points)
-                tubes.append(line.tube(radius=0.5))
+                tubes.append(line.tube(radius=Radius))
     p.add_mesh(tubes)
     p.show()
     return queue_streamlines, occupied_points, print_lines
