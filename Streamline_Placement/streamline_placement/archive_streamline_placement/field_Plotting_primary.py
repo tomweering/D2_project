@@ -23,3 +23,4 @@ def field_plotter(dimensions,datafile):
     pl.show()
     return mesh, arrows
 
+field_plotter(dimensions,"output_vfield.csv")
