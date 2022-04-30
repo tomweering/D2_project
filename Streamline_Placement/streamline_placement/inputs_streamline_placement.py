@@ -27,7 +27,7 @@ y = mesh10_3.points[:,1]
 z = mesh10_3.points[:,2]
 vectors = np.empty((mesh10_3.n_points,3)) #no change
 print(vectors)
-datafile = "Test_Case.csv"
+datafile = "Test_Case2.csv"
 with open(datafile) as f:
     vectors = np.loadtxt(f, delimiter=",")
 
