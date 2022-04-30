@@ -3,7 +3,7 @@ from inputs_streamline_placement import *
 """-----------------------------------------------------------"""
 """INPUTS THAT WE MAY WANT TO CHANGE MORE FREQUENTLY"""
 n_seed_points = 4
-Radius = 0.5
+Radius = 0.3
 #dsep = 0.25
 mesh = mesh10_3np
 #pyvista find vector at point#define separation distance, dsep, between streamlines and the checking parameter to avoid colisions, dtest (a proportional param. between 0 and 1)
