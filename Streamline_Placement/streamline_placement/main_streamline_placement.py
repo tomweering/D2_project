@@ -7,7 +7,7 @@ Radius = 0.3
 #dsep = 0.25
 mesh = mesh10_3np
 #pyvista find vector at point#define separation distance, dsep, between streamlines and the checking parameter to avoid colisions, dtest (a proportional param. between 0 and 1)
-dsep = 0.2 #cell unit lengths
+dsep = 0.3 #cell unit lengths
 dtest = 1 #proportion parameter
 #u_list = u_list
 #v_list = v_list
