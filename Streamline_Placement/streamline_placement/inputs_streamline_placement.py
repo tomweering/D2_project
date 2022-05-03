@@ -42,10 +42,10 @@ u_list,v_list,w_list = vectors[:,0],vectors[:,1],vectors[:,2]
 bounds_upper = np.array([nx,ny,nz])
 bounds_lower = np.array([0.,0.,0.])
 
-integration_direction = "forward"
+integration_direction = "both"
 
-initial_step_length = 0.5
+initial_step_length = 0.1
 step_unit = "cl"
-min_step_length = 0.5
+min_step_length = 0.1
 max_steps = 2000
 terminal_speed = 0
