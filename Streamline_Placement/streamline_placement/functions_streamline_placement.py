@@ -59,7 +59,7 @@ def new_seed_points(n_seed_points, dsep, point, mesh, u_list, v_list, w_list):
     # define new base points around the chosen base point
     angles = np.arange(theta0, theta0 + (2 * np.pi), (2 * np.pi) / n)
     # define new points
-    points = np.array(point * n) + dsep * (np.cos(angles).reshape((n, 1)) * (v1 * n) + np.sin(angles).reshape((n, 1)) * (v2 * n))
+    points = np.array(point * n) + (dsep) * (np.cos(angles).reshape((n, 1)) * (v1 * n) + np.sin(angles).reshape((n, 1)) * (v2 * n))
     """Description"""
     # find angle theta such that change in height (z coordinate is 0):
     # 2.5 = 2.5 + Radius*(np.cos(theta)*v1 + np.sin(theta)*v2)
