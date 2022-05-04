@@ -1,11 +1,11 @@
 import numpy as np
 import matplotlib.pyplot as plt
-
+import sys
 import matplotlib.pyplot as plt
 
 
 def getXYZ(s):
-    s = "Streamlines_HighResolution.csv"
+    s = sys.path[1] + "\\3D_Bracket\Streamlines_HighResolution.csv"
 
     int_time = np.genfromtxt(s, skip_header=1, usecols=[3], delimiter=',')
     points_xyz = np.transpose(np.genfromtxt(s, skip_header=1, usecols=(12, 13, 14), delimiter=','))
