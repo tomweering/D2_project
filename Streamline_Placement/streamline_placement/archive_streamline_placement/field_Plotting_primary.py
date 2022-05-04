@@ -27,6 +27,6 @@ def field_plotter(dimensions,datafile):
     pl.show()
     #print(arrows)
     #print(clipped)
-    return mesh, arrows, print(clipped.cell_points(0))
+    return mesh, arrows, clipped
 
 mesh, arrows, clipped = field_plotter(dimensions,"output_vfield.csv")
