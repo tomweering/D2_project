@@ -1,7 +1,7 @@
 import numpy as np
 import pyvista as pv
 from scipy import interpolate
-from inputs_streamline_placement import *
+#from inputs_streamline_placement import *
 
 
 def streamline(mesh, seed_point, integration_direction, initial_step_length, step_unit, min_step_length, max_steps,
@@ -41,7 +41,7 @@ def interpolator(mesh, u_list, v_list, w_list, point, method):
     return np.array([u_new, v_new, w_new])
 
 
-def new_seed_points(n_seed_points, Radius, point, mesh):
+def new_seed_points(n_seed_points, dsep, point, mesh, u_list, v_list, w_list):
     """ for a given point on a given streamline, find possible new seed points """
     n = n_seed_points
     base_vector = interpolator(mesh, u_list, v_list, w_list, point, "nearest")
@@ -59,8 +59,7 @@ def new_seed_points(n_seed_points, Radius, point, mesh):
     # define new base points around the chosen base point
     angles = np.arange(theta0, theta0 + (2 * np.pi), (2 * np.pi) / n)
     # define new points
-    points = np.array(point * n) + Radius * (
-                np.cos(angles).reshape((n, 1)) * (v1 * n) + np.sin(angles).reshape((n, 1)) * (v2 * n))
+    points = np.array(point * n) + dsep * (np.cos(angles).reshape((n, 1)) * (v1 * n) + np.sin(angles).reshape((n, 1)) * (v2 * n))
     """Description"""
     # find angle theta such that change in height (z coordinate is 0):
     # 2.5 = 2.5 + Radius*(np.cos(theta)*v1 + np.sin(theta)*v2)
