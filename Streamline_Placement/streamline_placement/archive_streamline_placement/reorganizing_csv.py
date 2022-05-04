@@ -9,7 +9,7 @@ direction = []
 coordinates = []
 items = []
 
-with open("field_vect_scaledByDensity.csv","r",newline='') as f:
+with open("Test_Case.csv","r",newline='') as f:
 
         csvReader = csv.reader(f,delimiter=',')
         for row in csvReader:
@@ -49,4 +49,4 @@ for i in range(len(new_list)):
     new_items.append(new_item)
 
 new_coordinates = np.array(new_items)
-np.savetxt("new_organized_field_vect.csv", new_coordinates,delimiter=",")
+np.savetxt("Test_Case_Scipy.csv", new_coordinates,delimiter=",")
