@@ -82,7 +82,7 @@ def streamline_placement(init_point, mesh, u_list, v_list, w_list, integration_d
     tubes.append(streamline1.tube(radius=radius))
     p.add_mesh(mesh.outline())
     while queue_streamlines:
-        print(queue_streamlines)
+        #print(queue_streamlines)
         #rint(len(queue_streamlines))
         # take out streamline from queue as base_streamline
         base_streamline = queue_streamlines[0]
@@ -96,7 +96,7 @@ def streamline_placement(init_point, mesh, u_list, v_list, w_list, integration_d
             #print("base point",base_point)
             #print(base_point)
             del queue_base_points[0]
-            possible_seed_points = new_seed_points(n_seed_points, dsep,base_point, mesh)
+            possible_seed_points = new_seed_points(n_seed_points, dsep,[base_point], mesh.points, u_list, v_list, w_list)
             print(possible_seed_points)
             #print("possible_seed_points", possible_seed_points)
             filtered_seed_points = seed_point_filter(possible_seed_points,occupied_points, dsep)

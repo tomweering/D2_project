@@ -45,10 +45,10 @@ def interpolator2(mesh, point):
     return mesh["vectors"][index]
 
 
-def new_seed_points(n_seed_points, dsep, point, mesh):
+def new_seed_points(n_seed_points, dsep, point, mesh, u_list, v_list, w_list):
     """ for a given point on a given streamline, find possible new seed points """
     n = n_seed_points
-    base_vector = interpolator2(mesh,point)
+    base_vector = interpolator(mesh, u_list, v_list, w_list, point, "nearest")
     print(base_vector)
     base_vector = base_vector / np.linalg.norm(base_vector)
     e = np.array([0, 0, 0])
