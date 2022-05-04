@@ -2,6 +2,7 @@ import numpy as np
 import pyvista as pv
 
 from main_streamline_placement import streamline_placement
+from functions_streamline_placement import interpolator2
 from functions_mesh_creation import mesh_creation
 #from inputs_streamline_placement import *
 
@@ -33,4 +34,6 @@ n_seed_points = 4
 
 
 
+
 streamline_placement(init_point, mesh, u_list, v_list, w_list, integration_direction, initial_step_length, step_unit, min_step_length, max_steps, terminal_speed, dsep, radius, n_seed_points)
+
