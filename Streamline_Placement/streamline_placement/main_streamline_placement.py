@@ -2,13 +2,13 @@ from functions_streamline_placement import *
 #from inputs_streamline_placement import *
 """-----------------------------------------------------------"""
 """INPUTS THAT WE MAY WANT TO CHANGE MORE FREQUENTLY"""
-n_seed_points = 4
-Radius = 0.5
+#n_seed_points = 4
+#Radius = 0.5
 #dsep = 0.25
 #mesh = mesh10_3np
 #pyvista find vector at point#define separation distance, dsep, between streamlines and the checking parameter to avoid colisions, dtest (a proportional param. between 0 and 1)
-dsep = 0.5 #cell unit lengths
-dtest = 1 #proportion parameter
+#dsep = 0.5 #cell unit lengths
+#dtest = 1 #proportion parameter
 #u_list = u_list
 #v_list = v_list
 #w_list = w_list
@@ -51,7 +51,7 @@ p.add_mesh(mesh10_3.outline())
 """
 """BEGINNING OF LOOP"""
 
-def streamline_placement(init_point, mesh, u_list, v_list, w_list, integration_direction, initial_step_length, step_unit, min_step_length, max_steps, terminal_speed, dsep, radius):
+def streamline_placement(init_point, mesh, u_list, v_list, w_list, integration_direction, initial_step_length, step_unit, min_step_length, max_steps, terminal_speed, dsep, radius, n_seed_points):
     # initialising queue of streamlines
     queue_streamlines = []
     # initialising set of finalised print-lines
