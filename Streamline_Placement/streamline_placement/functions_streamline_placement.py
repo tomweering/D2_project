@@ -40,9 +40,9 @@ def interpolator(mesh, u_list, v_list, w_list, point, method):
     w_new = float(interpolate.griddata(mesh, w_list, point, method=method))
     return np.array([u_new, v_new, w_new])
 
-def interpolator2(mesh, point):
-    index = mesh.find_closest_point(point, n=1)
-    return mesh["vectors"][index]
+#def interpolator2(mesh, point):
+    #index = mesh.find_closest_point(point, n=1)
+    #return mesh["vectors"][index]
 
 
 def new_seed_points(n_seed_points, dsep, point, mesh, u_list, v_list, w_list):

@@ -2,7 +2,7 @@ import numpy as np
 import pyvista as pv
 
 from main_streamline_placement import streamline_placement
-from functions_streamline_placement import interpolator2
+#from functions_streamline_placement import interpolator2
 from functions_mesh_creation import mesh_creation
 #from inputs_streamline_placement import *
 
@@ -11,13 +11,14 @@ from functions_mesh_creation import mesh_creation
 nx = 10
 ny = 10
 nz = 10
-#datafile = "Test_Case2.csv"
+datafile = "Test_Case2.csv"
 
 """--------------------INPUTS: STREAMLINE PLACEMENT------------------------"""
 
 init_point = np.array([[0.,0.,0.]])
 #u_list, v_list, w_list, mesh = mesh_creation(nx, ny, nz, datafile) #look a few lines above
 mesh = pv.UniformGrid(dims=(nx,ny,nz), spacing=(1,1,1), origin=(0,0,0))
+#print(mesh)
 integration_direction = "forward"
 initial_step_length = 1
 step_unit = "cl" #'cell length'
