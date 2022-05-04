@@ -51,7 +51,7 @@ p.add_mesh(mesh10_3.outline())
 """
 """BEGINNING OF LOOP"""
 
-def streamline_placement(init_point, mesh, u_list, v_list, w_list, integration_direction, initial_step_length, step_unit, min_step_length, max_steps, terminal_speed, dsep, radius, n_seed_points):
+def streamline_placement(init_point, mesh_pyvista, mesh_scipy, u_list, v_list, w_list, integration_direction, initial_step_length, step_unit, min_step_length, max_steps, terminal_speed, dsep, radius, n_seed_points):
     # initialising queue of streamlines
     queue_streamlines = []
     # initialising set of finalised print-lines
@@ -60,7 +60,7 @@ def streamline_placement(init_point, mesh, u_list, v_list, w_list, integration_d
     init_point = pv.PointSet(init_point)
 
     # creation of first streamline (REVIEW INITIAL AND MINIMYUM STEP LENGTH)
-    streamline1 = streamline(mesh, init_point, integration_direction, initial_step_length, step_unit,
+    streamline1 = streamline(mesh_pyvista, init_point, integration_direction, initial_step_length, step_unit,
                              min_step_length, max_steps, terminal_speed)
     # convert streamline into a set of points
     streamline_as_points = streamline1.cell_points(0)
@@ -80,9 +80,9 @@ def streamline_placement(init_point, mesh, u_list, v_list, w_list, integration_d
     tubes = pv.MultiBlock()
     p = pv.Plotter()
     tubes.append(streamline1.tube(radius=radius))
-    p.add_mesh(mesh.outline())
+    p.add_mesh(mesh_pyvista.outline())
     while queue_streamlines:
-        print(queue_streamlines)
+        #print(queue_streamlines)
         #rint(len(queue_streamlines))
         # take out streamline from queue as base_streamline
         base_streamline = queue_streamlines[0]
@@ -96,13 +96,10 @@ def streamline_placement(init_point, mesh, u_list, v_list, w_list, integration_d
             #print("base point",base_point)
             #print(base_point)
             del queue_base_points[0]
-<<<<<<< Updated upstream
-            possible_seed_points = new_seed_points(n_seed_points, dsep,base_point, mesh)
-            print(possible_seed_points)
-=======
+
             possible_seed_points = new_seed_points(n_seed_points, dsep,[base_point], mesh_pyvista, mesh_scipy, u_list, v_list, w_list)
             #print(possible_seed_points)
->>>>>>> Stashed changes
+
             #print("possible_seed_points", possible_seed_points)
             filtered_seed_points = seed_point_filter(possible_seed_points,occupied_points, dsep)
             #print("Filtered Seed points",filtered_seed_points)
@@ -114,7 +111,7 @@ def streamline_placement(init_point, mesh, u_list, v_list, w_list, integration_d
                 #print("filtered point",i)
                 i = pv.PointSet(i)
                 #integrate streamline, without regard to collision
-                current_streamline = streamline(mesh, i, integration_direction, initial_step_length, step_unit, min_step_length, max_steps, terminal_speed)
+                current_streamline = streamline(mesh_pyvista, i, integration_direction, initial_step_length, step_unit, min_step_length, max_steps, terminal_speed)
                 #print(current_streamline)
                 streamline_as_points = current_streamline.points
                 #streamline_as_points = current_streamline.cell_points(0)
