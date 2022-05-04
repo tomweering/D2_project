@@ -15,13 +15,11 @@ nz = 36
 
 #datafile = "Test_Case2.csv"
 
-datafileXmZM = "Test_Case_Ones.csv"
-datafileXMZm = "Test_Case_Ones.csv"
+datafileXmZM = "output_vfield.csv"
+datafileXMZm = "field_vect_scaledByDensity.csv"
 #output_vfield.csv              #Pyvista
 #field_vect_scaledByDensity.csv #Scipy
 
-#bounds = [59, 79, 27, 44, 2, 22]
-#clipped = arrows.clip_box(bounds)
 
 """--------------------INPUTS: STREAMLINE PLACEMENT------------------------"""
 
@@ -31,6 +29,9 @@ mesh_pyvista, mesh_scipy, u_list, v_list, w_list = mesh_creation(nx, ny, nz, dat
 print(mesh_pyvista)
 #mesh = pv.UniformGrid(dims=(nx,ny,nz), spacing=(1,1,1), origin=(0,0,0))
 
+bounds = [59, 79, 27, 44, 2, 22]
+clipped = mesh_pyvista.clip_box(bounds)
+print(clipped)
 integration_direction = "forward"
 initial_step_length = 1
 step_unit = "cl" #'cell length'
