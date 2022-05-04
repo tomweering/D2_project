@@ -2,7 +2,7 @@ import numpy as np
 import pyvista as pv
 
 from main_streamline_placement import streamline_placement
-from functions_streamline_placement import interpolator2
+#from functions_streamline_placement import interpolator2
 from functions_mesh_creation import mesh_creation
 #from inputs_streamline_placement import *
 
@@ -11,8 +11,8 @@ from functions_mesh_creation import mesh_creation
 nx = 10
 ny = 10
 nz = 10
-datafileXmZM = "Test_Case2.csv"
-datafileXMZm = ""
+datafileXmZM = "Test_Case_Ones.csv"
+datafileXMZm = "Test_Case_Ones.csv"
 #output_vfield.csv              #Pyvista
 #field_vect_scaledByDensity.csv #Scipy
 
@@ -38,5 +38,5 @@ n_seed_points = 4
 
 
 
-streamline_placement(init_point, mesh, u_list, v_list, w_list, integration_direction, initial_step_length, step_unit, min_step_length, max_steps, terminal_speed, dsep, radius, n_seed_points)
+streamline_placement(init_point,  mesh_pyvista, mesh_scipy, u_list, v_list, w_list, integration_direction, initial_step_length, step_unit, min_step_length, max_steps, terminal_speed, dsep, radius, n_seed_points)
 
