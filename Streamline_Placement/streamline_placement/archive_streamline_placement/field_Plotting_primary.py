@@ -15,12 +15,18 @@ def field_plotter(dimensions,datafile):
     direction_vectors, scalars = scaled_vector_processing(datafile)
     mesh['Vectors'] = direction_vectors
     mesh['Scalars'] = scalars
-
+    #print(mesh)
     arrows = mesh.glyph(orient="Vectors", scale="Scalars")
+    #print(arrows)
+    #(xmin, xmax, ymin, ymax, ,zmin zmax)
+    bounds = [59, 79, 27, 44, 2, 22]
+    clipped = arrows.clip_box(bounds)
     pl = pv.Plotter()
-    actor = pl.add_mesh(arrows)
-    #actor = pl.add_mesh(mesh)
+    pl.add_mesh(arrows,  style='wireframe', color='blue', label='Input')
+    pl.add_mesh(clipped, style='wireframe', color='red', label='Clipped')
     pl.show()
-    return mesh, arrows
+    #print(arrows)
+    #print(clipped)
+    return mesh, arrows, print(clipped.cell_points(0))
 
-field_plotter(dimensions,"output_vfield.csv")
+mesh, arrows, clipped = field_plotter(dimensions,"output_vfield.csv")

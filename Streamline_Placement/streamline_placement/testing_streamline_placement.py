@@ -20,6 +20,7 @@ datafileXMZm = "field_vect_scaledByDensity.csv"
 
 init_point = np.array([[0.,0.,0.]])
 mesh_pyvista, mesh_scipy, u_list, v_list, w_list = mesh_creation(nx, ny, nz, datafileXmZM, datafileXMZm) #look a few lines above
+print(mesh_pyvista)
 #mesh = pv.UniformGrid(dims=(nx,ny,nz), spacing=(1,1,1), origin=(0,0,0))
 integration_direction = "forward"
 initial_step_length = 1

@@ -9,7 +9,7 @@ def scaled_vector_processing(datafile):
 
     scalars = np.linalg.norm(array,axis=1)
     direction_vectors = (array.T/scalars).T
-    print(scalars)
+    #print(scalars)
     return direction_vectors, scalars
 
 direction_vectors, scalars = scaled_vector_processing("output_vfield.csv")

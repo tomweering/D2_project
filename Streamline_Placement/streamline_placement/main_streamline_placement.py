@@ -138,7 +138,7 @@ def streamline_placement(init_point, mesh_pyvista, mesh_scipy, u_list, v_list, w
                 tubes.append(line.tube(radius=radius))
     p.add_mesh(tubes)
     p.show()
-    return queue_streamlines, occupied_points, print_lines
+    return queue_streamlines, occupied_points, print_lines, mesh_pyvista
             
 
 #print(print_lines)
