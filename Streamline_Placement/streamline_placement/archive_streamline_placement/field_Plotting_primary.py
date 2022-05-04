@@ -17,6 +17,7 @@ def field_plotter(dimensions,datafile):
     mesh['Vectors'] = direction_vectors
     mesh['Scalars'] = scalars
 
+
     #boundary = clipped.decimate_boundary().extract_all_edges()
     #mesh.set_active_scalars('Vectors')
     #streamlines, src = mesh.streamlines(

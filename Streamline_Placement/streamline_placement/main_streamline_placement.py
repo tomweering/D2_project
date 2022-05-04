@@ -96,8 +96,10 @@ def streamline_placement(init_point, mesh_pyvista, mesh_scipy, u_list, v_list, w
             #print("base point",base_point)
             #print(base_point)
             del queue_base_points[0]
-            possible_seed_points = new_seed_points(n_seed_points, dsep,[base_point], mesh_scipy, u_list, v_list, w_list)
+
+            possible_seed_points = new_seed_points(n_seed_points, dsep,[base_point], mesh_pyvista, mesh_scipy, u_list, v_list, w_list)
             #print(possible_seed_points)
+
             #print("possible_seed_points", possible_seed_points)
             filtered_seed_points = seed_point_filter(possible_seed_points,occupied_points, dsep)
             #print("Filtered Seed points",filtered_seed_points)

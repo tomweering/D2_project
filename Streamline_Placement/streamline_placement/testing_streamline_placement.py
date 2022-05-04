@@ -8,20 +8,27 @@ from functions_mesh_creation import mesh_creation
 
 """--------------------INPUTS: MESH CREATION------------------------"""
 
-nx = 95
-ny = 59
-nz = 36
-datafileXmZM = "output_vfield.csv"
-datafileXMZm = "field_vect_scaledByDensity.csv"
+
+nx = 10
+ny = 10
+nz = 10
+
+#datafile = "Test_Case2.csv"
+=======
+datafileXmZM = "Test_Case_Ones.csv"
+datafileXMZm = "Test_Case_Ones.csv"
 #output_vfield.csv              #Pyvista
 #field_vect_scaledByDensity.csv #Scipy
+
 
 """--------------------INPUTS: STREAMLINE PLACEMENT------------------------"""
 
 init_point = np.array([[0.,0.,0.]])
+
 mesh_pyvista, mesh_scipy, u_list, v_list, w_list = mesh_creation(nx, ny, nz, datafileXmZM, datafileXMZm) #look a few lines above
 print(mesh_pyvista)
 #mesh = pv.UniformGrid(dims=(nx,ny,nz), spacing=(1,1,1), origin=(0,0,0))
+
 integration_direction = "forward"
 initial_step_length = 1
 step_unit = "cl" #'cell length'
@@ -40,4 +47,5 @@ n_seed_points = 4
 
 
 streamline_placement(init_point,  mesh_pyvista, mesh_scipy, u_list, v_list, w_list, integration_direction, initial_step_length, step_unit, min_step_length, max_steps, terminal_speed, dsep, radius, n_seed_points)
+
 

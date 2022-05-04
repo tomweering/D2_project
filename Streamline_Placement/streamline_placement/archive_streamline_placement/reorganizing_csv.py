@@ -1,5 +1,5 @@
 # %%
-import pandas as pd
+#import pandas as pd
 from matplotlib import pyplot as plt
 import numpy as np
 import csv
@@ -49,4 +49,8 @@ for i in range(len(new_list)):
     new_items.append(new_item)
 
 new_coordinates = np.array(new_items)
+
+np.savetxt("new_organized_field_vect.csv", new_coordinates,delimiter=",")
+
 np.savetxt("Test_Case_Scipy.csv", new_coordinates,delimiter=",")
+
