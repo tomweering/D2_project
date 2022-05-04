@@ -11,11 +11,17 @@ from functions_mesh_creation import mesh_creation
 nx = 10
 ny = 10
 nz = 10
-datafile = "Test_Case2.csv"
-
+datafileXmZM = "Test_Case2.csv"
+datafileXMZm = ""
+#output_vfield.csv              #Pyvista
+#field_vect_scaledByDensity.csv #Scipy
 """--------------------INPUTS: STREAMLINE PLACEMENT------------------------"""
 
 init_point = np.array([[0.,0.,0.]])
+
+mesh_pyvista, mesh_scipy, u_list, v_list, w_list = mesh_creation(nx, ny, nz, datafileXmZM, datafileXMZm) #look a few lines above
+#mesh = pv.UniformGrid(dims=(nx,ny,nz), spacing=(1,1,1), origin=(0,0,0))
+
 #u_list, v_list, w_list, mesh = mesh_creation(nx, ny, nz, datafile) #look a few lines above
 mesh = pv.UniformGrid(dims=(nx,ny,nz), spacing=(1,1,1), origin=(0,0,0))
 #print(mesh)
@@ -27,8 +33,6 @@ max_steps = 2000
 terminal_speed = 0
 dsep = 0.25
 radius = 0.5
-u_list, v_list, w_list = np.ones((1000,1)), np.ones((1000,1)), np.ones((1000,1))
-mesh['vectors'] = np.ones((1000,3))
 n_seed_points = 4
 
 """--------------------CALLING FUNCTIONS------------------------"""
