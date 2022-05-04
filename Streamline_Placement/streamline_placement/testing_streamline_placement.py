@@ -14,7 +14,7 @@ ny = 10
 nz = 10
 
 #datafile = "Test_Case2.csv"
-
+nm
 datafileXmZM = "Test_Case_Ones.csv"
 datafileXMZm = "Test_Case_Ones.csv"
 #output_vfield.csv              #Pyvista
