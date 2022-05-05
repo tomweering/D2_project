@@ -31,7 +31,8 @@ print(mesh_pyvista)
 
 bounds = [59, 79, 27, 44, 2, 22]
 clipped = mesh_pyvista.clip_box(bounds)
-print(clipped)
+mesh_pyvista = clipped
+print(clipped['vectors'])
 integration_direction = "forward"
 initial_step_length = 1
 step_unit = "cl" #'cell length'

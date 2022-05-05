@@ -12,6 +12,6 @@ def scaled_vector_processing(datafile):
     #print(scalars)
     return direction_vectors, scalars
 
-direction_vectors, scalars = scaled_vector_processing("output_vfield.csv")
+direction_vectors, scalars = scaled_vector_processing("output_vfield_without_zeros.csv")
         
     

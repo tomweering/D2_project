@@ -9,14 +9,14 @@ from functions_mesh_creation import mesh_creation
 """--------------------INPUTS: MESH CREATION------------------------"""
 
 
-nx = 10
-ny = 10
-nz = 10
+nx = 95
+ny = 59
+nz = 36
 
 #datafile = "Test_Case2.csv"
-nm
-datafileXmZM = "Test_Case_Ones.csv"
-datafileXMZm = "Test_Case_Ones.csv"
+
+datafileXmZM = "output_vfield_without_zeros.csv"
+datafileXMZm = "output_vfield_without_zeros.csv"
 #output_vfield.csv              #Pyvista
 #field_vect_scaledByDensity.csv #Scipy
 

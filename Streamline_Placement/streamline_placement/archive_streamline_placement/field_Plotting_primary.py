@@ -16,8 +16,8 @@ def field_plotter(dimensions,datafile):
     direction_vectors, scalars = scaled_vector_processing(datafile)
     mesh['Vectors'] = direction_vectors
     mesh['Scalars'] = scalars
-    for i in mesh['Vectors']:
-        print(i)
+    #for i in mesh['Vectors']:
+        #print(i)
     #print(mesh['Scalars'])
     #boundary = clipped.decimate_boundary().extract_all_edges()
     #mesh.set_active_scalars('Vectors')
@@ -41,4 +41,4 @@ def field_plotter(dimensions,datafile):
 
     return mesh, arrows, clipped
 
-mesh, arrows, clipped = field_plotter(dimensions,"output_vfield.csv")
+mesh, arrows, clipped = field_plotter(dimensions,"output_vfield_without_zeros.csv")
