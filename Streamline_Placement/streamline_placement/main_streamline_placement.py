@@ -125,7 +125,7 @@ def streamline_placement(init_point, mesh_pyvista, mesh_scipy, u_list, v_list, w
                 else:
                     break
                 streamline_as_points = streamline_as_points[:index+1]
-                #print("Streamline as points shortened", streamline_as_points)
+                print("Streamline as points shortened", streamline_as_points)
 
                 occupied_points = np.append(occupied_points,streamline_as_points,axis=0)
                 #print(occupied_points)
