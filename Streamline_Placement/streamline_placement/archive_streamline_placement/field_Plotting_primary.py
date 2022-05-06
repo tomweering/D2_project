@@ -28,6 +28,8 @@ def field_plotter(dimensions,datafile):
     arrows = mesh.glyph(orient="Vectors", scale="Scalars")
     #(xmin, xmax, ymin, ymax, ,zmin zmax)
     bounds = [59, 79, 27, 44, 2, 22]
+    #bounds = [76, 79, 40, 44, 6, 9]
+    #bounds = [59, 62, 27, 30, 18, 20]
     clipped = arrows.clip_box(bounds)
     boundary = mesh.decimate_boundary().extract_all_edges()
     pl = pv.Plotter()
@@ -36,7 +38,7 @@ def field_plotter(dimensions,datafile):
     pl.add_mesh(boundary, color="grey", opacity=0.25)
     #pl.camera_position = [(10, 9.5, -43), (87.0, 73.5, 123.0), (-0.5, -0.7, 0.5)]
     pl.add_mesh(arrows,  style='wireframe', color='blue', label='Input')
-    pl.add_mesh(clipped, style='wireframe', color='red', label='Clipped')
+    pl.add_mesh(clipped, style='wireframe', color='yellow', label='Clipped')
     pl.show()
 
     return mesh, arrows, clipped
