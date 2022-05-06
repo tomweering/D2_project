@@ -21,6 +21,6 @@ def to_grid_coord(coordinates):
     print(coordinates_grid)
     return coordinates_grid
 
-coordinates = [[-30, -7.5, 20]]
+coordinates = [[-10, 10, 0], [-50, -25, 40]]
 
 to_grid_coord(coordinates)
