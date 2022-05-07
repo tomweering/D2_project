@@ -125,4 +125,4 @@ guiding_field = [value_x, value_y, value_z]
 plotting(value_x, value_y, value_y)
 
 
-np.save('guiding_field_new.npy', guiding_field)
+#np.save('guiding_field_new.npy', guiding_field)
