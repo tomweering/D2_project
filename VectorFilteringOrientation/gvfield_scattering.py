@@ -1,7 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import compas
-from str_to_gvectors import vectors, locations
+from gstreamlines_modify import vectors, locations
 
 # This script converts the guiding vectors generated from the selected streamlines in s:str_to_gvectors
 # into a guiding vector field. This new vector field has the same shape (is defined on the same grid)
@@ -125,4 +125,4 @@ guiding_field = [value_x, value_y, value_z]
 plotting(value_x, value_y, value_y)
 
 
-np.save('guiding_field.npy', guiding_field)
+np.save('guiding_field_new.npy', guiding_field)

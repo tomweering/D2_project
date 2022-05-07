@@ -42,7 +42,8 @@ def poly_to_vectors(str_unified_points):   #Converts a polyline into a set of ve
     str_locationsx = []
     str_locationsy = []
     str_locationsz = []
-
+    vectors = []
+    locations = []
     # for k, polyline in enumerate(str_unified):
     #     points = polyline.points
     for k, points in enumerate(str_unified_points):
@@ -64,6 +65,8 @@ def poly_to_vectors(str_unified_points):   #Converts a polyline into a set of ve
             vector = vector / np.linalg.norm(vector)
             single_loc.append([x1, y1, z1])
             single_vec.append(vector)
+            locations.append([x1, y1, z1])
+            vectors.append(vector)
         single_vec_coord = np.reshape(np.array(single_vec).T, (3, len(single_vec)))
         single_loc_coord = np.reshape(np.array(single_loc).T, (3, len(single_loc)))
 
@@ -77,14 +80,14 @@ def poly_to_vectors(str_unified_points):   #Converts a polyline into a set of ve
 
     str_locations = [str_locationsx, str_locationsy, str_locationsz]
     str_vectors = [str_vectorsx, str_vectorsy, str_vectorsz]
-    return str_vectors, str_locations
+    return str_vectors, str_locations, vectors, locations
 
 str_unified, str_points = unit_length(streamlines, 1)
 
 if if_modify:
     str_points = modify(str_to_invert, str_to_delete, str_points)
 
-str_vectors, str_locations = poly_to_vectors(str_points)
+str_vectors, str_locations, vectors, locations = poly_to_vectors(str_points)
 
 fig = plt.figure(dpi=100)
 ax = fig.add_subplot(projection='3d')
