@@ -10,7 +10,8 @@ nx = 95
 ny = 59
 nz = 36
 
-datafileXmZM = "output_new_orientation.csv"
+# datafileXmZM = "output_new_orientation.csv"
+datafileXmZM = "output_new_unoriented2.csv"
 datafileXMZm = "field_vect_scaledByDensity.csv"
 # output_vfield.csv              #Pyvista
 # field_vect_scaledByDensity.csv #Scipy
