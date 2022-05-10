@@ -4,10 +4,12 @@ import numpy as np
 import matplotlib
 from vector_file_processing import *
 
-dimensions = (95,59,36)
+pv.set_plot_theme("document")
+dimensions = (95, 59, 36)
 
-def field_plotter(dimensions,datafile):
-    #data file is csv file with columns: x y z scalar
+
+def field_plotter(dimensions, datafile):
+    # data file is csv file with columns: x y z scalar
 
     mesh = pv.UniformGrid(
         dims=dimensions,
@@ -16,31 +18,22 @@ def field_plotter(dimensions,datafile):
     direction_vectors, scalars = scaled_vector_processing(datafile)
     mesh['Vectors'] = direction_vectors
     mesh['Scalars'] = scalars
-    #for i in mesh['Vectors']:
-        #print(i)
-    #print(mesh['Scalars'])
-    #boundary = clipped.decimate_boundary().extract_all_edges()
-    #mesh.set_active_scalars('Vectors')
-    #streamlines, src = mesh.streamlines(
-    #    return_source=True, source_radius=5, source_center=(59, 27, 2)
-    #)
 
     arrows = mesh.glyph(orient="Vectors", scale="Scalars")
-    #(xmin, xmax, ymin, ymax, ,zmin zmax)
+    # (xmin, xmax, ymin, ymax, ,zmin zmax)
     bounds = [59, 79, 27, 44, 2, 22]
-    #bounds = [76, 79, 40, 44, 6, 9]
-    #bounds = [59, 62, 27, 30, 18, 20]
+    # bounds = [76, 79, 40, 44, 6, 9]
+    # bounds = [59, 62, 27, 30, 18, 20]
     clipped = arrows.clip_box(bounds)
-    boundary = mesh.decimate_boundary().extract_all_edges()
+
     pl = pv.Plotter()
-    #pl.add_mesh(streamlines.tube(radius=0.2), lighting=False)
-    #pl.add_mesh(src)
-    pl.add_mesh(boundary, color="grey", opacity=0.25)
-    #pl.camera_position = [(10, 9.5, -43), (87.0, 73.5, 123.0), (-0.5, -0.7, 0.5)]
-    pl.add_mesh(arrows,  style='wireframe', color='blue', label='Input')
-    pl.add_mesh(clipped, style='wireframe', color='yellow', label='Clipped')
+    # pl.add_mesh(boundary, color="grey", opacity=0.25)
+    # pl.camera_position = [(10, 9.5, -43), (87.0, 73.5, 123.0), (-0.5, -0.7, 0.5)]
+    pl.add_mesh(arrows, color='black', label='Input')
+    # pl.add_mesh(clipped, color='yellow', label='Clipped')
     pl.show()
 
     return mesh, arrows, clipped
 
-mesh, arrows, clipped = field_plotter(dimensions,"output_vfield_without_zeros.csv")
+
+mesh, arrows, clipped = field_plotter(dimensions, "output_new_unoriented2.csv")
