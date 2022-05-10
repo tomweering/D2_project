@@ -10,7 +10,7 @@ nx = 95
 ny = 59
 nz = 36
 
-# datafileXmZM = "output_new_orientation.csv"
+#datafileXmZM = "output_new_orientation.csv"
 datafileXmZM = "output_new_unoriented2.csv"
 datafileXMZm = "field_vect_scaledByDensity.csv"
 # output_vfield.csv              #Pyvista
@@ -24,12 +24,14 @@ mesh_pyvista, mesh_scipy, u_list, v_list, w_list = mesh_creation(nx, ny, nz, dat
 
 init_point = [47.5, 29.5, 18.0]
 
-streamlines_bracket = mesh_pyvista.streamlines(vectors="vectors", n_points=25000, source_radius=50,
+streamlines_bracket = mesh_pyvista.streamlines(vectors='vectors', n_points=25000, source_radius=50,
                                                source_center=init_point, terminal_speed=0.0)
-p = pv.Plotter()
-p.add_mesh(streamlines_bracket.tube(radius=0.1))
-p.add_mesh(mesh_pyvista.outline())
-p.show()
+p = pv.Plotter(off_screen=True)
+p.add_mesh(streamlines_bracket.tube(radius=0.08), color='tan')
+#p.save_graphic(filename = "Final_tan.pdf", title = "Render of arbitrarily seeded streamlines using 45 Runge Kutta")
+#p.add_mesh(mesh_pyvista.outline())
+p.show(screenshot='Tan_Bracket_Unorganized.png')
+
 
 """--------------------CALLING FUNCTIONS------------------------"""
 
