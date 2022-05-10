@@ -10,8 +10,6 @@ nx = 95
 ny = 59
 nz = 36
 
-# datafile = "Test_Case2.csv"
-
 datafileXmZM = "output_new_orientation.csv"
 datafileXMZm = "field_vect_scaledByDensity.csv"
 # output_vfield.csv              #Pyvista
