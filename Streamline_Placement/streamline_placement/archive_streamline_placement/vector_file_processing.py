@@ -12,4 +12,4 @@ def scaled_vector_processing(datafile):
     return direction_vectors, scalars
 
 
-direction_vectors, scalars = scaled_vector_processing("output_new_unoriented2.csv")
+direction_vectors, scalars = scaled_vector_processing("output_new_orientation.csv")
