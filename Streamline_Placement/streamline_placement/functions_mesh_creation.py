@@ -20,3 +20,12 @@ def mesh_creation(nx, ny, nz, datafileXmZM, datafileXMZm):
 
     return mesh_pyvista, mesh_scipy, u_list, v_list, w_list
 
+def extracted_mesh(mesh_pyvista, bounds):
+    #bounds have format: (xmin, xmax, ymin, ymax, zmin, zmax)
+    mesh_pyvista_extracted = mesh_pyvista.extract_subset(bounds)
+    return mesh_pyvista_extracted
+
+def mesh_adjustment(mesh):
+    #make sure all associated w vectors for the parsed mesh are positive (i.e. pointing up)
+    mesh['vectors'][:,1] = abs(mesh['vectors'][:,1])
+    return mesh
