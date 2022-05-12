@@ -3,7 +3,6 @@ import vtk
 import numpy as np
 import matplotlib
 from vector_file_processing import *
-
 pv.set_plot_theme("document")
 dimensions = (95, 59, 36)
 
@@ -29,9 +28,11 @@ def field_plotter(dimensions, datafile):
     pl = pv.Plotter()
     # pl.add_mesh(boundary, color="grey", opacity=0.25)
     # pl.camera_position = [(10, 9.5, -43), (87.0, 73.5, 123.0), (-0.5, -0.7, 0.5)]
-    pl.add_mesh(arrows, color='black', label='Input')
-    # pl.add_mesh(clipped, color='yellow', label='Clipped')
-    pl.show()
+    pl.add_mesh(arrows, color='tan')
+    pl.camera.position = (130, 50, 160)
+    pl.camera.zoom(8)
+    pl.show(screenshot='Tan_Arrows_UnOrganized3.png')
+
 
     return mesh, arrows, clipped
 
