@@ -51,12 +51,12 @@ def field_plotter(dimensions,datafile):
     #pl.add_mesh(src)
     #pl.add_mesh(boundary, color="grey", opacity=0.25)
     #pl.camera_position = [(10, 9.5, -43), (87.0, 73.5, 123.0), (-0.5, -0.7, 0.5)]
-    pl.add_mesh(arrows, label='Input')
+    pl.add_mesh(arrows, label='Input', color='tan')
     #pl.add_mesh(clipped, style='wireframe', color='red', label='Clipped')
-    pl.add_mesh(mesh.outline())
-    pl.add_mesh(extracted.outline())
+    pl.add_mesh(mesh.outline(), color='black')
+    pl.add_mesh(extracted.outline(), color='black')
     pl.camera.position = (109.08918728934306, 104.94778806690199, 30.739613025075645)
-    pl.show(screenshot='Test_1.png')
+    pl.show(screenshot='Test_2.png')
 
     return mesh, arrows, clipped
 
