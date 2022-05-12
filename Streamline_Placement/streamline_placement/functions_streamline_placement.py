@@ -19,7 +19,8 @@ def proximity_check(point, occupied_points, dsep):
     occupied_points = pv.PointSet(occupied_points)
     index = occupied_points.find_closest_point(point, n=1)
     distance = np.linalg.norm(occupied_points.points[index] - point)
-    return distance >= dsep
+    #print("distance",distance,"twice dsep", 2*dsep)
+    return (distance >= 2*dsep)
 
 
 def lines_from_points(points):
@@ -41,8 +42,9 @@ def interpolator(mesh, u_list, v_list, w_list, point, method):
     return np.array([u_new, v_new, w_new])
 
 def interpolator2(mesh_pyvista, point):
-    closest_point_index = mesh_pyvista.find_closest_point(point[0], n=1)
+    closest_point_index = mesh_pyvista.find_closest_point(point, n=1)
     #closest_point = mesh_pyvista.point[closest_point_index]
+    #print("closest point",mesh_pyvista.points[closest_point_index])
     closest_defined_vector = mesh_pyvista["vectors"][closest_point_index]
     return closest_defined_vector
 
@@ -52,7 +54,7 @@ def new_seed_points(n_seed_points, dsep, point, mesh_pyvista, mesh_scipy, u_list
     base_vector = interpolator(mesh_scipy, u_list, v_list, w_list, point, "nearest")
 
     base_vector = interpolator2(mesh_pyvista, point)
-
+    #print(base_vector)
     base_vector = base_vector / np.linalg.norm(base_vector)
     e = np.array([0, 0, 0])
     e[np.argmin(np.abs(base_vector))] = 1
@@ -61,13 +63,15 @@ def new_seed_points(n_seed_points, dsep, point, mesh_pyvista, mesh_scipy, u_list
     v1 = v1 / np.linalg.norm(v1)
 
     v2 = np.cross(base_vector, v1)
-
+    #print(base_vector)
+    #print(v1)
+    #print(v2)
     theta0 = np.arctan(-v1[2] / v2[2])
-
+    #print(theta0)
     # define new base points around the chosen base point
     angles = np.arange(theta0, theta0 + (2 * np.pi), (2 * np.pi) / n)
     # define new points
-    points = np.array(point * n) + (dsep) * (np.cos(angles).reshape((n, 1)) * (v1 * n) + np.sin(angles).reshape((n, 1)) * (v2 * n))
+    points = np.array([point]*4) + (dsep) * (np.cos(angles).reshape((n, 1)) * (v1 * n) + np.sin(angles).reshape((n, 1)) * (v2 * n))
     """Description"""
     # find angle theta such that change in height (z coordinate is 0):
     # 2.5 = 2.5 + Radius*(np.cos(theta)*v1 + np.sin(theta)*v2)
@@ -77,12 +81,19 @@ def new_seed_points(n_seed_points, dsep, point, mesh_pyvista, mesh_scipy, u_list
     return points
 
 
-def seed_point_filter(points, occupied_points, dsep):
+def seed_point_filter(points, occupied_points, dsep, mesh):
     filter_array = []
     # if the element is closer than dsep to any occupied point, its index in the filter array is set to False
     for i in points:
-        if proximity_check(i, occupied_points, dsep):
+        print("proximity",proximity_check(i,occupied_points,dsep), "boundary", boundary_check(mesh,i))
+        if proximity_check(i, occupied_points, dsep) and np.linalg.norm(interpolator2(mesh, i)) > 0.8:
             filter_array.append(True)
         else:
             filter_array.append(False)
     return points[filter_array]
+
+def boundary_check(mesh, point):
+
+    index_closest_point = mesh.find_closest_point(point, n = 1)
+    closest_vector = mesh["vectors"][index_closest_point]
+    return np.linalg.norm(closest_vector)>0.
