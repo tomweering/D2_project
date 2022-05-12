@@ -76,8 +76,8 @@ def streamline_placement(init_point, mesh_pyvista, mesh_scipy, u_list, v_list, w
 
     si = 0
     while len(queue_streamlines) > 0:
-        print(f'len of queue of streamlines {len(queue_streamlines)}')
-        print(f'Streamline iterator {si}')
+        #print(f'len of queue of streamlines {len(queue_streamlines)}')
+        #print(f'Streamline iterator {si}')
         si += 1
         # print(queue_streamlines)
         # rint(len(queue_streamlines))
@@ -90,25 +90,25 @@ def streamline_placement(init_point, mesh_pyvista, mesh_scipy, u_list, v_list, w
         bpi = 0
         while len(queue_base_points) > 0:
 
-            print(f'Base_point iterator{bpi}')
+            #print(f'Base_point iterator{bpi}')
             bpi += 1
             # for each point defining the streamline, find more points around it and integrate more streamlines
             base_point = queue_base_points[0]
             # print(base_point)
             queue_base_points.pop(0)
             base_vector = interpolator2(mesh_pyvista, base_point)
-            print("magnitude of base_vector", np.linalg.norm(base_vector))
+            #print("magnitude of base_vector", np.linalg.norm(base_vector))
             if np.linalg.norm(base_vector) == 0.:
-                print("VECTOR AT THIS BASEPOINT IS 0")
+                #print("VECTOR AT THIS BASEPOINT IS 0")
                 continue
             possible_seed_points = new_seed_points(n_seed_points, dsep, base_point, mesh_pyvista, mesh_scipy, u_list,
                                                    v_list, w_list)
-            print("possible", possible_seed_points)
+            #print("possible", possible_seed_points)
             # print(possible_seed_points)
 
             # print("possible_seed_points", possible_seed_points)
             filtered_seed_points = seed_point_filter(possible_seed_points, occupied_points, dsep, mesh_pyvista)
-            print("number of filtered base points", len(filtered_seed_points))
+            #print("number of filtered base points", len(filtered_seed_points))
             # print("Filtered Seed points",filtered_seed_points)
             # integrate from the filtered seed_points while after each one, adding the resulting streamline (as points) to occupied_points, print_lines and queue
             # if len(filtered_seed_points) == 0:
@@ -130,21 +130,21 @@ def streamline_placement(init_point, mesh_pyvista, mesh_scipy, u_list, v_list, w
                 # print("streamline as points for each point",streamline_as_points)
 
                 # cutting streamlines when they collide with others or they pass out of box(looping through each point, starting with the first point)
-                print(((len(streamline_as_points) - 1) * initial_step_length), (0.5 * min(mesh_pyvista.dimensions)))
+                #print(((len(streamline_as_points) - 1) * initial_step_length), (0.5 * min(mesh_pyvista.dimensions)))
                 if ((len(streamline_as_points) - 1) * initial_step_length) > (0.5 * min(mesh_pyvista.dimensions)):
                     index = 0
                     while (proximity_check(streamline_as_points[index], occupied_points, dsep) == True) and index < (
                             len(streamline_as_points) - 1):
                         index += 1
                     streamline_as_points = streamline_as_points[:(index)]
-                    for i in streamline_as_points:
-                        print(proximity_check(i, occupied_points, dsep))
+                    #for i in streamline_as_points:
+                        #print(proximity_check(i, occupied_points, dsep))
                     if ((len(streamline_as_points) - 1) * initial_step_length) > (0.5 * min(mesh_pyvista.dimensions)):
-                        print(f'length of current streamline{len(streamline_as_points)}')
+                        #print(f'length of current streamline{len(streamline_as_points)}')
                         # print("Streamline as points shortened", streamline_as_points)
-                        print("len streamline as points minus 1 multipled by step units",
-                              (len(streamline_as_points) - 1) * initial_step_length)
-                        print("minimum of mesh pyvista dimensions divided by two", (0.5 * min(mesh_pyvista.dimensions)))
+                        #print("len streamline as points minus 1 multipled by step units",
+                              #(len(streamline_as_points) - 1) * initial_step_length)
+                        #print("minimum of mesh pyvista dimensions divided by two", (0.5 * min(mesh_pyvista.dimensions)))
                         occupied_points = np.append(occupied_points, streamline_as_points, axis=0)
                         print_lines.append(streamline_as_points)
                         queue_streamlines.append(streamline_as_points)
