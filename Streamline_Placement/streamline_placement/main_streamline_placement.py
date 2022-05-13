@@ -53,6 +53,7 @@ def streamline_placement(init_point, mesh_pyvista, mesh_scipy, u_list, v_list, w
 
     # streamline1 = mesh_pyvista.streamlines(vectors="vectors", source_center=None, source_radius=None, n_points=1,
     # start_position=init_point.points[0], return_source=False, pointa=None,pointb=None, progress_bar=False) convert
+
     # streamline into a set of points
     streamline_as_points = streamline1.points
 
@@ -109,8 +110,8 @@ def streamline_placement(init_point, mesh_pyvista, mesh_scipy, u_list, v_list, w
             # == 0: print("empty")
 
             for i in filtered_seed_points:
-                print(f'seed point{i}')
-                print("i", i)
+                #print(f'seed point{i}')
+                #print("i", i)
                 # print("filtered point",i)
                 i = pv.PointSet(i)
                 # integrate streamline, without regard to collision
@@ -126,7 +127,7 @@ def streamline_placement(init_point, mesh_pyvista, mesh_scipy, u_list, v_list, w
                 # cutting streamlines when they collide with others, or they pass out of box(looping through each
                 # point, starting with the first point) print(((len(streamline_as_points) - 1) *
                 # initial_step_length), (0.5 * min(mesh_pyvista.dimensions)))
-                if ((len(streamline_as_points) - 1) * initial_step_length) > (0.5 * min(mesh_pyvista.dimensions)):
+                if ((len(streamline_as_points) - 1) * initial_step_length) > (0.1 * min(mesh_pyvista.dimensions)):
                     index = 0
                     while (proximity_check(streamline_as_points[index], occupied_points, dsep) == True) and index < (
                             len(streamline_as_points) - 1):
@@ -134,7 +135,7 @@ def streamline_placement(init_point, mesh_pyvista, mesh_scipy, u_list, v_list, w
                     streamline_as_points = streamline_as_points[:(index)]
                     # for i in streamline_as_points:
                     # print(proximity_check(i, occupied_points, dsep))
-                    if ((len(streamline_as_points) - 1) * initial_step_length) > (0.5 * min(mesh_pyvista.dimensions)):
+                    if ((len(streamline_as_points) - 1) * initial_step_length) > (0.1 * min(mesh_pyvista.dimensions)):
                         # print(f' length of current streamline{len(streamline_as_points)}') print("Streamline as
                         # points shortened", streamline_as_points) print("len streamline as points minus 1 multiplied
                         # by step units", (len(streamline_as_points) - 1) * initial_step_length) print("minimum of

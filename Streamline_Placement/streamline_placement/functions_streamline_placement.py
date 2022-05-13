@@ -20,7 +20,7 @@ def proximity_check(point, occupied_points, dsep):
     index = occupied_points.find_closest_point(point, n=1)
     distance = np.linalg.norm(occupied_points.points[index] - point)
     #print("distance",distance,"twice dsep", 2*dsep)
-    return (distance >= 2*dsep)
+    return (distance >= 3*dsep)
 
 
 def lines_from_points(points):
