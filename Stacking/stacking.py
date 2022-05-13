@@ -45,7 +45,7 @@ if __name__ == '__main__':
     # get the streamlines from cvs file
     s = "Streamlines_lowResolution.csv"
     points_xyz, idx = getXYZ(s)
-
+    print(points_xyz)
     # iso indexing
     linear = np.linspace(0, len(points_xyz) - 1, len(points_xyz))
     zeros = np.zeros(len(points_xyz))
@@ -69,17 +69,19 @@ if __name__ == '__main__':
     statistics = statistics[sortedIndex]
     sortedStreamlines = points_xyz[sortedIndex]
 
-    # fig = plt.figure()
-    # ax = fig.add_subplot(projection='3d')
+    fig = plt.figure()
+    ax = fig.add_subplot(projection='3d')
 
-    # for i in range(1,100):
-    #     angle = np.rad2deg(np.arctan(abs(statistics[i][4] - statistics[0][4]) / (
-    #                 (statistics[i][0] - statistics[0][0]) ** 2 + (statistics[i][2] - statistics[0][2]) ** 2) ** 0.5))
-    #     if angle < 10:
-    #         x1, y1, z1 = sortedStreamlines[i].T
-    #         ax.scatter(x1, y1, z1)
-    x = np.linspace(0,len(inter),len(inter))
-    inters = inter[sortedIndex]
-    plt.plot(x,inters)
+    for i in range(1,30):
+        angle = np.rad2deg(np.arctan(abs(statistics[i][4] - statistics[0][4]) / (
+                    (statistics[i][0] - statistics[0][0]) ** 2 + (statistics[i][2] - statistics[0][2]) ** 2) ** 0.5))
+        if angle < 180:
+            x1, y1, z1 = sortedStreamlines[i].T
+            ax.scatter(x1, y1, z1)
+    # x = np.linspace(0,len(inter),len(inter))
+    # inters = inter[sortedIndex]
+    # plt.plot(x,inters)
+
+    plt.grid(False)
+    plt.axis('off')
     plt.show()
-    # plt.show()
