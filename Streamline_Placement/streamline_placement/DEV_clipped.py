@@ -37,7 +37,7 @@ init_point = [59.,27.,18]
 streamlines_bracket = mesh_extracted.streamlines(vectors="vectors",n_points=1, source_radius=1.0,source_center=init_point, terminal_speed=0.0)
 streamlines_bracket = streamline(mesh_extracted,pv.PointSet(init_point),"forward", 0.1,"cl", 0.1, 2000, 0.)
 p = pv.Plotter()
-p.add_mesh(streamlines_bracket.tube(radius=0.3), color='tan')
+p.add_mesh(streamlines_bracket.tube(radius=0.1), color='tan')
 p.show()
 #mesh = pv.UniformGrid(dims=(nx,ny,nz), spacing=(1,1,1), origin=(0,0,0))
 #This clipping stuff does nothing, look above for extraction method
@@ -54,8 +54,8 @@ step_unit = "cl" #'cell length'
 min_step_length = 1.
 max_steps = 1000000000
 terminal_speed = 0.
-dsep = 0.1
-radius = 0.2
+dsep = 0.04
+radius = 0.08
 dsep_multiplier = 1
 n_seed_points = 4
 
@@ -68,6 +68,7 @@ if __name__ == '__main__':
     queue_streamlines, occupied_points, print_lines, mesh = streamline_placement(init_point,  mesh_extracted, mesh_scipy, u_list, v_list, w_list, integration_direction, initial_step_length, step_unit, min_step_length, max_steps, terminal_speed, dsep, radius, n_seed_points)
 
     p = pv.Plotter()
+
 
     from functions_streamline_placement import lines_from_points
     for i in print_lines:

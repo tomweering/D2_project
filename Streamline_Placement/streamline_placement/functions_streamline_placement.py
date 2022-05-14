@@ -86,7 +86,7 @@ def seed_point_filter(points, occupied_points, dsep, mesh):
     # if the element is closer than dsep to any occupied point, its index in the filter array is set to False
     for i in points:
         print("proximity",proximity_check(i,occupied_points,dsep), "boundary", boundary_check(mesh,i))
-        if proximity_check(i, occupied_points, dsep) and np.linalg.norm(interpolator2(mesh, i)) > 0.8:
+        if proximity_check(i, occupied_points, dsep) and np.linalg.norm(interpolator2(mesh, i)) > 0.75:
             filter_array.append(True)
         else:
             filter_array.append(False)
