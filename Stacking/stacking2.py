@@ -1,7 +1,9 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import sys
-import matplotlib.pyplot as plt
+import scipy.spatial as spatial
+import alphashape
+from descartes import PolygonPatch
 
 
 def getXYZ(s):
@@ -45,5 +47,36 @@ if __name__ == '__main__':
     # get the streamlines from cvs file
     s = "Streamlines_lowResolution.csv"
     points_xyz, idx = getXYZ(s)
+    points_xyz = np.vstack(points_xyz)
+    points_xy = np.delete(points_xyz,2,1)
 
-    # find surface
+    field_dimensions = [95, 59, 36]
+    left_bnd = [-167.186099, -78.232828, -4.077015]
+    right_bnd = [19.129499, 37.478964, 66.526791]
+
+    Nx, Ny, Nz = field_dimensions
+    linex, liney, linez = (np.linspace(left_bnd[0], right_bnd[0], Nx),
+                           np.linspace(left_bnd[1], right_bnd[1], Ny),
+                           np.linspace(left_bnd[2], right_bnd[2], Nz))
+
+    point_tree = spatial.cKDTree(points_xy)
+    surface = np.array([])
+    for x in linex:
+        for y in liney:
+            potential_points = point_tree.query_ball_point([x, y], 1)
+            u,v,w = points_xyz[potential_points].T
+            if not w.size == 0:
+                surface = np.append(surface, potential_points[np.argmin(w)])
+    surface = surface.astype(int)
+    print(points_xyz[surface])
+    fig = plt.figure()
+    ax = fig.add_subplot()
+    x1,y1,z1 = points_xyz[surface].T
+    points_xy_hull = np.delete(points_xyz[surface],2,1)
+    ax.scatter(x1, y1)
+    alpha = 0.95 * alphashape.optimizealpha(points_xy_hull)
+    hull = alphashape.alphashape(points_xy_hull, alpha)
+    hull_pts = hull.exterior.coords.xy
+    ax.scatter(hull_pts[0], hull_pts[1], color='red')
+    ax.add_patch(PolygonPatch(hull, fill=False, color='green'))
+    plt.show()
