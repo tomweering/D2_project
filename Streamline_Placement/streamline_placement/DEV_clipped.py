@@ -54,8 +54,8 @@ step_unit = "cl" #'cell length'
 min_step_length = 1.
 max_steps = 1000000000
 terminal_speed = 0.
-dsep = 0.05
-radius = 0.1
+dsep = 0.1
+radius = 0.2
 dsep_multiplier = 1
 n_seed_points = 4
 
