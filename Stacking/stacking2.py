@@ -74,9 +74,9 @@ if __name__ == '__main__':
     x1,y1,z1 = points_xyz[surface].T
     points_xy_hull = np.delete(points_xyz[surface],2,1)
     ax.scatter(x1, y1)
-    alpha = 0.95 * alphashape.optimizealpha(points_xy_hull)
-    hull = alphashape.alphashape(points_xy_hull, alpha)
-    hull_pts = hull.exterior.coords.xy
-    ax.scatter(hull_pts[0], hull_pts[1], color='red')
-    ax.add_patch(PolygonPatch(hull, fill=False, color='green'))
+    # alpha = 0.95 * alphashape.optimizealpha(points_xy_hull)
+    # hull = alphashape.alphashape(points_xy_hull, alpha)
+    # hull_pts = hull.exterior.coords.xy
+    # ax.scatter(hull_pts[0], hull_pts[1], color='red')
+    # ax.add_patch(PolygonPatch(hull, fill=False, color='green'))
     plt.show()
