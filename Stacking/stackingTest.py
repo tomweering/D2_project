@@ -31,15 +31,16 @@ for i in idx_short:
     mean[i] = np.mean(dd[np.where(idx == i)])
 
 sorted_idx = idx_short[mean.argsort()]
+print(mean,sorted_idx)
 
 selected_str = []
 
-for i in sorted_idx[0:50]:
+for i in sorted_idx[0:300]:
 
     selected_str = np.append(selected_str, points_xyz[np.where(idx == i)])
 
 
 print(selected_str)
-# selected_cloud = pv.PolyData(selected_str)
-# selected_cloud.plot(point_size=10)
+selected_cloud = pv.PolyData(selected_str)
+selected_cloud.plot(point_size=10)
 
