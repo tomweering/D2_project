@@ -51,7 +51,7 @@ print(weighted_list[sorted_weighted])
 # plt.show()
 plotter = pv.Plotter()
 
-surf = cloud.delaunay_2d(alpha=3.0)
+surf = cloud.delaunay_2d(alpha=4.0)
 # surf.plot(cpos="xy", show_edges=True)
 minimum = 0
 for i in idx_short:

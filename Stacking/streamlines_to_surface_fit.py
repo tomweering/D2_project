@@ -24,7 +24,7 @@ def lines_from_points(points):
 
 cloud = pv.PolyData(surface_points)
 #cloud2.plot(point_size=10)
-# surf = cloud.delaunay_2d(alpha=4.0)
+surf = cloud.delaunay_2d(alpha=4.0)
 # surf.plot(cpos="xy", show_edges=True)
 
 tree = spatial.KDTree(surface_points)
@@ -49,13 +49,14 @@ sorted_idx = idx_short[mean.argsort()]
 p = pv.Plotter()
 selected_str = []
 print(sorted_idx)
-for i in sorted_idx[0:500]:
-    selected_str = np.append(selected_str, points_xyz[np.where(idx == i)])
-    line = lines_from_points(points_xyz[np.where(idx == i)])
-    line["scalars"] = np.arange(line.n_points)
+for i in sorted_idx[0:800]:
+    streamline_local = points_xyz[np.where(idx == i)]
+    selected_str = np.append(selected_str, streamline_local)
+    line = lines_from_points(streamline_local)
+    line["scalars"] = dd[np.where(idx == i)]
     tube = line.tube(radius=0.1)
-    p.add_mesh(tube, color="tan", show_edges=True)
-
+    p.add_mesh(tube, show_edges=False)
+p.add_mesh(surf)
 # for i in range(500):
 #     line = lines_from_points(points_xyz[np.where(idx == i)])
 #     line["scalars"] = np.arange(line.n_points)
